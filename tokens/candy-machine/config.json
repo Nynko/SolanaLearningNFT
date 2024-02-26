@@ -1,0 +1,24 @@
+{
+  "tokenStandard": "nft",
+  "number": 5,
+  "symbol": "BLD",
+  "sellerFeeBasisPoints": 0,
+  "isMutable": true,
+  "isSequential": false,
+  "creators": [
+    {
+      "address": "GbwUQ71zdretHWC1G4QhG8VazEPyDajYQ1hxzDmdNvBk",
+      "share": 100
+    }
+  ],
+  "uploadMethod": "nft_storage",
+  "ruleSet": null,
+  "awsConfig": null,
+  "sdriveApiKey": null,
+  "nftStorageAuthToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDAxMjk3MzM4RTMxOWZGQzA1NkZFM2ZiRjFFNjMyNkNhNzFhYmZEMGQiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwNzQ4OTk4OTU5NiwibmFtZSI6IkZTVCJ9.SLrBxfMftVSKkdwW4N2N31FGlDR-II92wNkoc-7BUCA",
+  "shdwStorageAccount": null,
+  "pinataConfig": null,
+  "hiddenSettings": null,
+  "guards": null,
+  "maxEditionSupply": null
+}

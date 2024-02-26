@@ -1,0 +1,21 @@
+{
+    "name": "BUILD #1",
+    "symbol": "BLD",
+    "description": "A token for buildoors",
+    "image": "1.png",
+    "attributes": [
+        {
+            "trait_type": "character",
+            "value": "Nature Ball"
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "1.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image"
+    }
+}

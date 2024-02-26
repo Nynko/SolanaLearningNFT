@@ -1,0 +1,21 @@
+{
+    "name": "BUILD #3",
+    "symbol": "BLD",
+    "description": "A token for buildoors",
+    "image": "3.png",
+    "attributes": [
+        {
+            "trait_type": "character",
+            "value": "Astronaut Ball"
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "3.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image"
+    }
+}

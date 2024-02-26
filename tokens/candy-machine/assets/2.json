@@ -1,0 +1,21 @@
+{
+    "name": "BUILD #2",
+    "symbol": "BLD",
+    "description": "A token for buildoors",
+    "image": "2.png",
+    "attributes": [
+        {
+            "trait_type": "character",
+            "value": "Cowboy Ball"
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "2.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image"
+    }
+}

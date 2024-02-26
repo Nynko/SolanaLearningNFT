@@ -1,0 +1,21 @@
+{
+    "name": "BUILD #4",
+    "symbol": "BLD",
+    "description": "A token for buildoors",
+    "image": "4.png",
+    "attributes": [
+        {
+            "trait_type": "character",
+            "value": "Knight Ball"
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "4.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image"
+    }
+}

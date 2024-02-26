@@ -1,0 +1,21 @@
+{
+    "name": "BUILD Collection",
+    "symbol": "BLD",
+    "description": "A token for buildoors",
+    "image": "collection.png",
+    "attributes": [
+        {
+            "trait_type": "character",
+            "value": "Whimsical Ball"
+        }
+    ],
+    "properties": {
+        "files": [
+            {
+                "uri": "collection.png",
+                "type": "image/png"
+            }
+        ],
+        "category": "image"
+    }
+}
