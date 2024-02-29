@@ -41,7 +41,6 @@ const Connected: FC = () => {
   const { wallet, connect } = useWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
   const [isMinting, setIsMinting] = useState(false);
-  const [print, setPrint] = useState(false);
 
   const connection = useConnection().connection;
   if (!wallet) {
@@ -61,16 +60,12 @@ const Connected: FC = () => {
     );
 
     setCandyMachine(fetchedCandyMachine);
-    console.log(fetchedCandyMachine);
+    console.log("candymachine", fetchedCandyMachine);
   };
 
   useEffect(() => {
     _fetchCandyMachine(umi);
   }, [umi]);
-
-  // if (candyMachine && candyMachine.items.length === candyMachine.itemsLoaded) {
-  //   setPrint(true);
-  // }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
     async (event) => {
@@ -78,64 +73,56 @@ const Connected: FC = () => {
 
       if (event.defaultPrevented || !candyMachine) return;
 
-      if (print) {
-        try {
-          console.log("print");
-        } catch (error) {
-          console.log(error);
-          alert(error);
-        } finally {
-          setIsMinting(false);
-        }
-      } else {
-        try {
-          setIsMinting(true);
-          const nftMint = generateSigner(umi);
+      if (candyMachine.items) {
+      }
 
-          const candyGuard = await fetchCandyGuard(
-            umi,
-            candyMachine.mintAuthority
-          );
+      try {
+        setIsMinting(true);
+        const nftMint = generateSigner(umi);
 
-          console.log("candyGuard", candyGuard);
+        const candyGuard = await fetchCandyGuard(
+          umi,
+          candyMachine.mintAuthority
+        );
 
-          const result = await transactionBuilder()
-            .add(setComputeUnitLimit(umi, { units: 800_000 }))
-            .add(
-              mintV2(umi, {
-                candyGuard: candyGuard.publicKey,
-                payer: umi.identity,
-                candyMachine: candyMachine.publicKey,
-                nftMint,
-                collectionMint: candyMachine.collectionMint,
-                collectionUpdateAuthority: candyMachine.authority,
-                tokenStandard: candyMachine.tokenStandard,
-                mintArgs: {
-                  mintLimit: some({ id: 1 }),
-                },
-              })
-              // mintFromCandyMachineV2(umi, {
-              //   payer: umi.identity,
-              //   candyMachine: candyMachine.publicKey,
-              //   mintAuthority: umi.identity,
-              //   nftOwner: umi.identity.publicKey,
-              //   nftMint,
-              //   collectionMint: candyMachine.collectionMint,
-              //   collectionUpdateAuthority: candyMachine.authority,
-              // })
-            )
-            .sendAndConfirm(umi);
+        console.log("candyGuard", candyGuard);
 
-          const signature = base58.deserialize(result.signature);
+        const result = await transactionBuilder()
+          .add(setComputeUnitLimit(umi, { units: 800_000 }))
+          .add(
+            mintV2(umi, {
+              candyGuard: candyGuard.publicKey,
+              payer: umi.identity,
+              candyMachine: candyMachine.publicKey,
+              nftMint,
+              collectionMint: candyMachine.collectionMint,
+              collectionUpdateAuthority: candyMachine.authority,
+              tokenStandard: candyMachine.tokenStandard,
+              mintArgs: {
+                mintLimit: some({ id: 1 }),
+              },
+            })
+            // mintFromCandyMachineV2(umi, {
+            //   payer: umi.identity,
+            //   candyMachine: candyMachine.publicKey,
+            //   mintAuthority: umi.identity,
+            //   nftOwner: umi.identity.publicKey,
+            //   nftMint,
+            //   collectionMint: candyMachine.collectionMint,
+            //   collectionUpdateAuthority: candyMachine.authority,
+            // })
+          )
+          .sendAndConfirm(umi);
 
-          console.log(signature);
-          router.push(`/newMint?mint=${nftMint.publicKey.toString()}`);
-        } catch (error) {
-          console.log(error);
-          alert(error);
-        } finally {
-          setIsMinting(false);
-        }
+        const signature = base58.deserialize(result.signature);
+
+        console.log(signature);
+        router.push(`/newMint?mint=${nftMint.publicKey.toString()}`);
+      } catch (error) {
+        console.log(error);
+        alert(error);
+      } finally {
+        setIsMinting(false);
       }
     },
     [wallet, candyMachine]
@@ -172,7 +159,7 @@ const Connected: FC = () => {
 
       <Button onClick={handleClick} bgColor="accent" color="white" maxW="380px">
         <HStack>
-          <Text>{`${print ? "print" : "mint"} buildoor`}</Text>
+          <Text>mint buildoor</Text>
           <ArrowForwardIcon />
         </HStack>
       </Button>
