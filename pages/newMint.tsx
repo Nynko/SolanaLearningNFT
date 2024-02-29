@@ -27,6 +27,7 @@ import {
   fetchDigitalAsset,
 } from "@metaplex-foundation/mpl-token-metadata";
 import { fromWeb3JsPublicKey } from "@metaplex-foundation/umi-web3js-adapters";
+import * as web3 from "@solana/web3.js";
 
 interface NewMintProps {
   mint: PublicKey;
@@ -41,15 +42,10 @@ const NewMint: NextPage<NewMintProps> = ({ mint }) => {
   const [isMinting, setIsMinting] = useState(false);
 
   const connection = useConnection().connection;
-  if (!wallet) {
-    return (
-      <MainLayout>
-        {" "}
-        <p> Loading ... </p>
-      </MainLayout>
-    );
-  }
   const umi = useMemo(() => {
+    if (!wallet) {
+      return createUmiInstance(web3.Keypair.generate(), connection);
+    }
     return createUmiInstance(wallet.adapter, connection);
   }, [connection, wallet]);
 
@@ -72,6 +68,15 @@ const NewMint: NextPage<NewMintProps> = ({ mint }) => {
     async (event) => {},
     []
   );
+
+  if (!wallet) {
+    return (
+      <MainLayout>
+        {" "}
+        <p> Loading ... </p>
+      </MainLayout>
+    );
+  }
 
   return (
     <MainLayout>

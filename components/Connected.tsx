@@ -35,6 +35,8 @@ import {
 } from "@metaplex-foundation/umi";
 import { setComputeUnitLimit } from "@metaplex-foundation/mpl-toolbox";
 import { base58 } from "@metaplex-foundation/umi/serializers";
+import MainLayout from "./MainLayout";
+import * as web3 from "@solana/web3.js";
 
 const Connected: FC = () => {
   const router = useRouter();
@@ -43,10 +45,10 @@ const Connected: FC = () => {
   const [isMinting, setIsMinting] = useState(false);
 
   const connection = useConnection().connection;
-  if (!wallet) {
-    return;
-  }
   const umi = useMemo(() => {
+    if (!wallet) {
+      return createUmiInstance(web3.Keypair.generate(), connection);
+    }
     return createUmiInstance(wallet.adapter, connection);
   }, [connection, wallet]);
 
@@ -66,6 +68,15 @@ const Connected: FC = () => {
   useEffect(() => {
     _fetchCandyMachine(umi);
   }, [umi]);
+
+  if (!wallet) {
+    return (
+      <MainLayout>
+        {" "}
+        <p> Loading ... </p>
+      </MainLayout>
+    );
+  }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
     async (event) => {
