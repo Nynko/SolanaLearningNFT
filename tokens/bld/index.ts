@@ -17,10 +17,10 @@ import {
   findMetadataPda,
 } from "@metaplex-foundation/mpl-token-metadata";
 import { nftStorageUploader } from "@metaplex-foundation/umi-uploader-nft-storage";
-import {
-  fromWeb3JsKeypair,
-} from "@metaplex-foundation/umi-web3js-adapters";
+import { fromWeb3JsKeypair } from "@metaplex-foundation/umi-web3js-adapters";
 import { base58 } from "@metaplex-foundation/umi/serializers";
+import { createUmiInstance } from "@/functions/useUmi";
+import { useMemo } from "react";
 
 const TOKEN_NAME = "BUILD";
 const TOKEN_SYMBOL = "BLD";
@@ -32,16 +32,10 @@ async function createBldToken(
   connection: web3.Connection,
   payerWeb3: web3.Keypair
 ) {
-  const umi = createUmi(web3.clusterApiUrl("devnet"));
+  const umi = useMemo(() => {
+    return createUmiInstance(payerWeb3, connection);
+  }, [connection, payerWeb3]);
   const payer = createSignerFromKeypair(umi, fromWeb3JsKeypair(payerWeb3));
-  umi.identity = payer;
-  umi.payer = payer;
-  umi.use(
-    nftStorageUploader({
-      token: process.env.NFTSTORAGEKEY as string,
-    })
-  );
-  umi.use(mplTokenMetadata());
 
   // Read image file
   const imageBuffer = fs.readFileSync(TOKEN_IMAGE_PATH);
@@ -55,13 +49,12 @@ async function createBldToken(
     image: imageUri,
   });
 
-
   const mint = generateSigner(umi);
 
   // Finding out the address where the metadata is stored
-  const metadataPda = findMetadataPda(umi,{mint: mint.publicKey});
+  const metadataPda = findMetadataPda(umi, { mint: mint.publicKey });
 
-  console.log('mint: ',mint.publicKey.toString());
+  console.log("mint: ", mint.publicKey.toString());
 
   const sig = await createV1(umi, {
     metadata: metadataPda,
@@ -72,14 +65,14 @@ async function createBldToken(
     sellerFeeBasisPoints: percentAmount(0),
     tokenStandard: TokenStandard.NonFungible,
   }).sendAndConfirm(umi);
-  
+
   const signature = base58.deserialize(sig.signature);
-  console.log('signature:', signature[0]);
+  console.log("signature:", signature[0]);
 
   fs.writeFileSync(
     "tokens/bld/cache.json",
     JSON.stringify({
-      mint: mint.toString(),
+      mint: mint.publicKey.toString(),
       imageUri: imageUri,
       metadataUri: uri,
       tokenMetadata: metadataPda.toString(),

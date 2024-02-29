@@ -19,6 +19,13 @@
   "shdwStorageAccount": null,
   "pinataConfig": null,
   "hiddenSettings": null,
-  "guards": null,
-  "maxEditionSupply": null
+  "guards": {
+    "default": {
+      "mintLimit": {
+        "id": 1,
+        "limit": 2
+      }
+    }
+  },
+  "maxEditionSupply": 100
 }

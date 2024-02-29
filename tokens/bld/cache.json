@@ -1,1 +1,9 @@
-{"mint":"[object Object]","imageUri":["https://nftstorage.link/ipfs/bafybeidwr75zqktwb7dq7rb5pavvlttqamqutoq6asfmvvocd4ewdrobgm"],"metadataUri":"https://nftstorage.link/ipfs/bafkreibn5mgx3wdplrqi34pixsypee3hslebdu23coocy4j52simvelzm4","tokenMetadata":"ESKJpwTdwzggP3EBKKWHvXxUfnjHC7fLxhSa5qvvuLb7,255","metadataTransaction":"4QWj1FMMnswr4Y2wmEFin7pFDvGZDr3p4q7QHaEYRsiQtjdVkSsf5FP7t5JkRNvXPdAGU13aReP88ZnUsbwvBDQ7"}
+{
+  "mint": "AiqSeCTiEZFE9ve1DYvD3MBmBUCvSuzZbp7axD6qTNzP",
+  "imageUri": [
+    "https://nftstorage.link/ipfs/bafybeidwr75zqktwb7dq7rb5pavvlttqamqutoq6asfmvvocd4ewdrobgm"
+  ],
+  "metadataUri": "https://nftstorage.link/ipfs/bafkreibn5mgx3wdplrqi34pixsypee3hslebdu23coocy4j52simvelzm4",
+  "tokenMetadata": "ESKJpwTdwzggP3EBKKWHvXxUfnjHC7fLxhSa5qvvuLb7,255",
+  "metadataTransaction": "4QWj1FMMnswr4Y2wmEFin7pFDvGZDr3p4q7QHaEYRsiQtjdVkSsf5FP7t5JkRNvXPdAGU13aReP88ZnUsbwvBDQ7"
+}
