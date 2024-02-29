@@ -69,15 +69,6 @@ const Connected: FC = () => {
     _fetchCandyMachine(umi);
   }, [umi]);
 
-  if (!wallet) {
-    return (
-      <MainLayout>
-        {" "}
-        <p> Loading ... </p>
-      </MainLayout>
-    );
-  }
-
   const handleClick: MouseEventHandler<HTMLButtonElement> = useCallback(
     async (event) => {
       if (!wallet?.adapter.connected) return;

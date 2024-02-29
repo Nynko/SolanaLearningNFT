@@ -69,15 +69,6 @@ const NewMint: NextPage<NewMintProps> = ({ mint }) => {
     []
   );
 
-  if (!wallet) {
-    return (
-      <MainLayout>
-        {" "}
-        <p> Loading ... </p>
-      </MainLayout>
-    );
-  }
-
   return (
     <MainLayout>
       <Container>
