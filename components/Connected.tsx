@@ -52,7 +52,7 @@ const Connected: FC = () => {
 
   const _fetchCandyMachine = async (umi: any) => {
     const candyMachinePublicKey = umiPublicKey(
-      "H6vRsF6xH2PFp4kBbA6yW3PoiCA5aebac65yjftKYSz9"
+      "GPQHTnzooVfFFaezDnhYTMNjgScN3HZTTRRntkYjLbeZ"
     );
     const fetchedCandyMachine = await fetchCandyMachine(
       umi,
